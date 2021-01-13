@@ -2,14 +2,14 @@
 #### Thanks to [@devbobo's](https://github.com/devbobo) original work and assistance of [@thehoff](https://github.com/thehoff)  
   
 ### Table of Contents
-* 1. Logging into SpaNET
+* 1\. Logging into SpaNET
   * 1.1 Obtaining Login Password
   * 1.2 Making Login Request
-* 2. Spa Socket
+* 2\. Spa Socket
   * 2.1 Spa Socket Request
   * 2.2 Connecting to Spa Socket
-* 3. Spa Status
-* 4. Commands API
+* 3\. Spa Status
+* 4\. Commands API
   * 4.1 Spa
     * 4.1.1 Temperature
     * 4.1.2 Clean/Sanitise
@@ -59,8 +59,8 @@
     * 4.5.9 Support Mode
     * 4.5.10 Lock Mode
     * 4.5.11 Notifications
-* 5. Raw Commands List
-* 6. Reading Spa Data API
+* 5\. Raw Commands List
+* 6\. Reading Spa Data API
 * 6.1 Spa
     * 6.1.1 Set Temperature
     * 6.1.2 Water Temperature
