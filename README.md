@@ -45,4 +45,4 @@ Thanks to [@devbobo's](https://github.com/devbobo) original work and inspiration
 Also thanks to [@thehoff](https://github.com/thehoff) for contributions and assistance developing this.
 
 # API
-### See [spanet.md](https://github.com/blat2512/blob/main/spanet.md)
+### See [spanet.md](spanet.md)
