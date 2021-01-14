@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://spanet.com.au/wp-content/uploads/AppLogo_pic-450x451.png" width="150">
+</p>
+
 # SpaNET API
 This documentation allows you to control SpaNET WiFi controllers which can be found in Vortex/SpaNET spa's. If your spa works with the SpaNET SpaLINK app, this documentation will help you automate and intergrate control of it into your own code.
 
