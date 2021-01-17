@@ -3,16 +3,18 @@
 </p>
 
 # SpaNET API
-This documentation allows you to control SpaNET WiFi controllers which can be found in Vortex/SpaNET spa's. If your spa works with the SpaNET SpaLINK app, this documentation will help you automate and intergrate control of it into your own code.
+This documentation allows you to control SpaNET WiFi controllers which can be found in Vortex/SpaNET spa's. If your spa works with the SpaNET SpaLINK app, this documentation will help you automate and integrate control of it into your own code.
 
 # Plugins & Libraries
-Some SpaNET plugins and libraries for various programming languages/platforms have been created for ease of use. Below listed are current plugins available. To get your SpaNET plugin created based on this API for a platform not already on this list shown here (e.g. openHAB, Home Assistant), please open an issue with the URL to your repository and information to help make it more visible.
-* Homebridge: homebridge-spanet  
+Some SpaNET plugins and libraries for various programming languages/platforms have been created for ease of use. Below listed are current plugins available. To get your SpaNET plugin created based on this API for a platform not already on this list shown here (e.g. openHAB, Home Assistant, Python Package, Node.JS Package), please open an issue with the URL to your repository and information so this can help make it more visible.
+* Homebridge: homebridge-spanet [STATUS: COMING SOON]  
   View on [Github](https://github.com/BlaT2512/homebridge-spanet) or [NPM](https://www.npmjs.com/)
-* Javascript: spanet  
+<!--
+* Javascript: spanet [STATUS: NOT YET PLANNED]  
   View on [Github](https://github.com/BlaT2512) or [NPM](https://www.npmjs.com/)
-* Python: spanet  
+* Python: spanet [STATUS: NOT YET PLANNED]  
   View on [Github](https://github.com/BlaT2512) or [PyPI](https://pypi.org/)
+-->
 
 # Code Included
 This Github repo contains code snippets which can be used in your own programming to demonstrate how to communicate with SpaLINK in different programming languages. Included files are listed below.
