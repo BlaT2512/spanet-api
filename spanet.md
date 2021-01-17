@@ -1,5 +1,5 @@
 # SpaNET SpaLINK API
-#### Thanks to [@devbobo's](https://github.com/devbobo) original work and assistance of [@thehoff](https://github.com/thehoff)  
+#### Thanks to [@devbobo's](https://gist.github.com/devbobo) original work and assistance of [@thehoff](https://github.com/thehoff)  
   
 ### Table of Contents
 * 1\. Logging into SpaNET
@@ -129,6 +129,7 @@
     * 6.5.9 Support Mode
     * 6.5.10 Lock Mode
     * 6.5.11 Notifications
+* 7\. SpaNET API Requests List
   
 ### 1. Logging into SpaNET
 #### 1.1 Obtaining Login Password
@@ -1388,3 +1389,6 @@ Data: `0` represents keypad lock off, `1` partial keypad lock and `2` full keypa
 
 ##### 6.5.11 Notification
 Notifications status for devices is sent to the SpaNET API server but is individual to devices, so your app must keep track if it has turned notifications on for itself. This setting should not be applicable for most plugins/code anyway, unless you are making an app which can send a type of notifications (e.g. push notifications).
+
+# 7. SpaNET API Requests List
+COMING SOON - IN DEVELOPMENT
