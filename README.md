@@ -64,4 +64,4 @@ Also thanks to [@thehoff](https://github.com/thehoff) for contributions and assi
 SpaNET spa controllers can be found in a variety of Vortex, Oasis and many other brand spas/swim spas/spa pools.
 
 **Q - If my spa has a compatible SpaNET controller without WiFi, can I make my own SmartLINK module?**  
-This should be possible, and testing to successfully make and program a homemade SmartLINK compatible module is currently underway. This will be updated if we complete this and release a documentation about it.
+This should be possible, and testing to successfully make and program a homemade SmartLINK compatible module is currently underway. This will be updated if we complete this and decide to release a documentation about it.
