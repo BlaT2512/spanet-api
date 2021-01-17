@@ -1,6 +1,6 @@
 ---
 name: Question / Other
-about: Simply ask a question or about other types of issues here.
+about: Simply ask a question or about other types of issues here
 title: ''
 labels: question
 assignees: BlaT2512
