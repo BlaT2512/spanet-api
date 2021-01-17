@@ -2,7 +2,7 @@
 name: Library/package addition request
 about: Request your library/package to be added to the official list
 title: ''
-labels: ''
+labels: Library/package addition
 assignees: BlaT2512
 
 ---
