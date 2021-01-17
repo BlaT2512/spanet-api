@@ -65,3 +65,6 @@ SpaNET spa controllers can be found in a variety of Vortex, Oasis and many other
 
 **Q - If my spa has a compatible SpaNET controller without WiFi, can I make my own SmartLINK module?**  
 This should be possible, and testing to successfully make and program a homemade SmartLINK compatible module is currently underway. This will be updated if it is completed and a documentation is decided to be released about it.
+
+**Q - Can I integrate the password encryption code into my own compiled code instead of [users] having to use the CLI utility beforehand?**
+The password encryption code and key to generate the correct hashed password for use in the API calls is currently kept private meaning you can only generate your password beforehand with the CLI utility. If you would like this code for use in your own software (must be compiled if distributed), please contact me with the email on my account.
