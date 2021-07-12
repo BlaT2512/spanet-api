@@ -1296,16 +1296,16 @@ Data: Time with the formula `h*256+m` (ie: for 20:00, integer will be 20\*256+0 
 `,R7,`2304`,0,1,1,1,0,1,0,0,0,253,191,253,240,483,125,77,1,0,0,0,23,200,1,0,1,31,32,35,100,5,:`
 
 Line: R7  
-Read Bit: 12  
+Read Bit: 2  
 Data Type: Integer  
 Range: `0` to `5947`  
 Data: Time with the formula `h*256+m` (ie: for 20:00, integer will be 20\*256+0 = 5120; for 13:47, integer will be 13\*256+47 = 3375)
 
 ##### 6.5.6 Time Out Mode
-`,R6,1,5,`30`,2,5,8,1,360,1,0,3584,5120,127,128,5632,5632,2304,1792,0,30,0,0,0,0,2,3,0,:`
+`,R6,1,5,30,2,5,8,1,360,1,0,3584,5120,127,128,5632,5632,2304,1792,0,`30`,0,0,0,0,2,3,0,:`
 
 Line: R6  
-Read Bit: 4  
+Read Bit: 21  
 Data Type: Integer  
 Range: `10` to `30`  
 Data: Integer is time in minutes before pump and blower auto time-out
