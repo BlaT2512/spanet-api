@@ -1390,5 +1390,22 @@ Data: `0` represents keypad lock off, `1` partial keypad lock and `2` full keypa
 ##### 6.5.11 Notification
 Notifications status for devices is sent to the SpaNET API server but is individual to devices, so your app must keep track if it has turned notifications on for itself. This setting should not be applicable for most plugins/code anyway, unless you are making an app which can send a type of notifications (e.g. push notifications).
 
+#### 6.6 Operating Environment
+##### 6.6.1 Power
+###### Supply Volts
+`,R2,18,'250',51,70,4,13,50,55,19,6,2020,376,9999,1,0,490,207,34,6000,602,23,20,0,0,0,0,44,35,45,:`
+Line: R2  
+Read Bit: 3  
+Data Type: Integer, current power supply voltage (volts)
+
+###### Current Draw
+`,R2,'18',250,51,70,4,13,50,55,19,6,2020,376,9999,1,0,490,207,34,6000,602,23,20,0,0,0,0,44,35,45,:`
+Line: R2  
+Read Bit: 2  
+Data Type: Integer, current power supply current draw (amps)
+
+
+
+
 # 7. SpaNET API Requests List
 COMING SOON - IN DEVELOPMENT
