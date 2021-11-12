@@ -1393,13 +1393,13 @@ Notifications status for devices is sent to the SpaNET API server but is individ
 #### 6.6 Operating Environment
 ##### 6.6.1 Power
 ###### Supply Volts
-`,R2,18,'250',51,70,4,13,50,55,19,6,2020,376,9999,1,0,490,207,34,6000,602,23,20,0,0,0,0,44,35,45,:`
+`,R2,18,`250`,51,70,4,13,50,55,19,6,2020,376,9999,1,0,490,207,34,6000,602,23,20,0,0,0,0,44,35,45,:`
 Line: R2  
 Read Bit: 3  
 Data Type: Integer, current power supply voltage (volts)
 
 ###### Current Draw
-`,R2,'18',250,51,70,4,13,50,55,19,6,2020,376,9999,1,0,490,207,34,6000,602,23,20,0,0,0,0,44,35,45,:`
+`,R2,`18`,250,51,70,4,13,50,55,19,6,2020,376,9999,1,0,490,207,34,6000,602,23,20,0,0,0,0,44,35,45,:`
 Line: R2  
 Read Bit: 2  
 Data Type: Integer, current power supply current draw (amps)
