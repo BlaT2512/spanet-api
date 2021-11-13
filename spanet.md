@@ -1394,18 +1394,21 @@ Notifications status for devices is sent to the SpaNET API server but is individ
 ##### 6.6.1 Power
 ###### Supply Volts
 `,R2,18,`250`,51,70,4,13,50,55,19,6,2020,376,9999,1,0,490,207,34,6000,602,23,20,0,0,0,0,44,35,45,:`
+
 Line: R2  
 Read Bit: 3  
 Data Type: Integer, current power supply voltage (volts)
 
 ###### Current Draw
 `,R2,`18`,250,51,70,4,13,50,55,19,6,2020,376,9999,1,0,490,207,34,6000,602,23,20,0,0,0,0,44,35,45,:`
+
 Line: R2  
 Read Bit: 2  
 Data Type: Integer, current power supply current draw (amps)
 
 ###### Variable Heat Element Current Draw
 `,R3,32,1,4,4,4,SW V5 17 05 31,SV3,18480001,20000826,1,0,0,0,0,0,NA,7,0,470,Filtering,4,`0`,7,7,0,0,:`
+
 Line: R3  
 Read Bit: 23  
 Data Type: Integer, current variable heat element current draw x 10 (amps) eg 213 = 21.3 amps
@@ -1413,14 +1416,16 @@ Data Type: Integer, current variable heat element current draw x 10 (amps) eg 21
 #### 6.7 OEM Settings
 ##### Current Limit
 `,R3,`32`,1,4,4,4,SW V5 17 05 31,SV3,18480001,20000826,1,0,0,0,0,0,NA,7,0,470,Filtering,4,0,7,7,0,0,:`
-Line: R3
-Read Bit: 2
+
+Line: R3  
+Read Bit: 2  
 Data Type: Integer, current limit.
 
 ##### Load Shed
 `,R3,32,1,4,4,4,SW V5 17 05 31,SV3,18480001,20000826,1,0,0,0,0,0,NA,`7`,0,470,Filtering,4,0,7,7,0,0,:`
-Line: R3
-Read Bit: 18
+
+Line: R3  
+Read Bit: 18  
 Data Type: Integer, current limit.
 
 # 7. SpaNET API Requests List
