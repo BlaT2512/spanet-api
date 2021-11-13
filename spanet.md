@@ -1404,8 +1404,24 @@ Line: R2
 Read Bit: 2  
 Data Type: Integer, current power supply current draw (amps)
 
+###### Variable Heat Element Current Draw
+`,R3,32,1,4,4,4,SW V5 17 05 31,SV3,18480001,20000826,1,0,0,0,0,0,NA,7,0,470,Filtering,4,`0`,7,7,0,0,:`
+Line: R3  
+Read Bit: 23  
+Data Type: Integer, current variable heat element current draw x 10 (amps) eg 213 = 21.3 amps
 
+#### 6.7 OEM Settings
+##### Current Limit
+`,R3,`32`,1,4,4,4,SW V5 17 05 31,SV3,18480001,20000826,1,0,0,0,0,0,NA,7,0,470,Filtering,4,0,7,7,0,0,:`
+Line: R3
+Read Bit: 2
+Data Type: Integer, current limit.
 
+##### Load Shed
+`,R3,32,1,4,4,4,SW V5 17 05 31,SV3,18480001,20000826,1,0,0,0,0,0,NA,`7`,0,470,Filtering,4,0,7,7,0,0,:`
+Line: R3
+Read Bit: 18
+Data Type: Integer, current limit.
 
 # 7. SpaNET API Requests List
 COMING SOON - IN DEVELOPMENT
