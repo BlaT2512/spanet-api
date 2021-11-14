@@ -990,6 +990,14 @@ Data Type: Integer
 Range: `0` to `1`  
 Data: Integer is `1` when the spa is currently sleeping due to a sleep timer `0` when it is not
 
+##### 6.1.8 Heater Temperature
+`,R2,18,250,51,70,4,13,50,55,19,6,2020,`376`,9999,1,0,490,207,34,6000,602,23,20,0,0,0,0,44,35,45,:`
+
+Line: R2  
+Read Bit: 13  
+Data Type: Integer  
+Data: Represents heater temperature in degrees celcius * 10 (e.g. `360` is 36.00°C and `76` is 7.60°C)
+
 #### 6.2 Pumps
 ##### 6.2.1 Pump 1
 ###### Pump 1
