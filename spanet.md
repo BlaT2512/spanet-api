@@ -998,6 +998,22 @@ Read Bit: 13
 Data Type: Integer  
 Data: Represents heater temperature in degrees celcius * 10 (e.g. `360` is 36.00°C and `76` is 7.60°C)
 
+##### 6.1.8 Pool Temperature
+`,R2,0,243,43,223,6,19,14,36,9,1,2022,320,`9999`,1,0,106,607,0,147,33207,791,819,0,721,0,0,1673,354,854,241,:`
+
+Line: R2
+Read Bit: 14
+Data Type: Integer
+Data: Pool temperature * 10.  Note seems to return rubish value on most spas.  Use Water Temperature instead.
+
+##### 6.1.8 Water Present
+`,R2,0,243,43,223,6,19,14,36,9,1,2022,320,9999,`1`,0,106,607,0,147,33207,791,819,0,721,0,0,1673,354,854,241,:`
+
+Line: R2
+Read Bit: 15
+Data Type: Integer
+Data: 1 = Water present, 0 = No water detected
+
 #### 6.2 Pumps
 ##### 6.2.1 Pump 1
 ###### Pump 1
@@ -1420,6 +1436,15 @@ Data Type: Integer, current power supply current draw (amps)
 Line: R3  
 Read Bit: 23  
 Data Type: Integer, current variable heat element current draw x 10 (amps) eg 213 = 21.3 amps
+
+##### 6.6.1 Environment
+###### Case Temperature
+`,R2,0,243,`43`,223,6,19,14,36,9,1,2022,320,9999,1,0,106,607,0,147,33207,791,819,0,721,0,0,1673,354,854,241,:`
+
+Line: R2
+Read Bit: 4
+Data Type: Integer, current case temperature C
+
 
 #### 6.7 OEM Settings
 ##### Current Limit
