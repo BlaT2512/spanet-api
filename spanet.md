@@ -1096,7 +1096,7 @@ Data: Hours of runtime. 33207 = 3320.7 hours
 Line: R2  
 Read Bit: 23  
 Data Type: Integer  
-Data Unit of Measure: Unknown
+Data Unit of Measure: Unknown  
 Data: Unknown
 
 #### 6.1.18. Relay 2
@@ -1105,7 +1105,7 @@ Data: Unknown
 Line: R2  
 Read Bit: 24  
 Data Type: Integer  
-Data Unit of Measure: Unknown
+Data Unit of Measure: Unknown  
 Data: Unknown
 
 #### 6.1.19. Relay 3
@@ -1114,7 +1114,7 @@ Data: Unknown
 Line: R2  
 Read Bit: 25  
 Data Type: Integer  
-Data Unit of Measure: Unknown
+Data Unit of Measure: Unknown  
 Data: Unknown
 
 #### 6.1.20. Relay 4
@@ -1123,7 +1123,7 @@ Data: Unknown
 Line: R2  
 Read Bit: 26  
 Data Type: Integer  
-Data Unit of Measure: Unknown
+Data Unit of Measure: Unknown  
 Data: Unknown
 
 #### 6.1.21. Relay 5
@@ -1132,7 +1132,7 @@ Data: Unknown
 Line: R2  
 Read Bit: 27  
 Data Type: Integer  
-Data Unit of Measure: Unknown
+Data Unit of Measure: Unknown  
 Data: Unknown
 
 #### 6.1.22. Relay 6
@@ -1141,7 +1141,7 @@ Data: Unknown
 Line: R2  
 Read Bit: 28  
 Data Type: Integer  
-Data Unit of Measure: Unknown
+Data Unit of Measure: Unknown  
 Data: Unknown
 
 #### 6.1.23. Relay 7
@@ -1150,7 +1150,7 @@ Data: Unknown
 Line: R2  
 Read Bit: 29  
 Data Type: Integer  
-Data Unit of Measure: Unknown
+Data Unit of Measure: Unknown  
 Data: Unknown
 
 #### 6.1.24. Relay 8
@@ -1159,7 +1159,7 @@ Data: Unknown
 Line: R2  
 Read Bit: 30  
 Data Type: Integer  
-Data Unit of Measure: Unknown
+Data Unit of Measure: Unknown  
 Data: Unknown
 
 #### 6.1.25. Relay 9
@@ -1168,7 +1168,7 @@ Data: Unknown
 Line: R2  
 Read Bit: 31  
 Data Type: Integer  
-Data Unit of Measure: Unknown
+Data Unit of Measure: Unknown  
 Data: Unknown
 
 
