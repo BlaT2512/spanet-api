@@ -1,141 +1,166 @@
 # SpaNET SpaLINK API
-#### Thanks to [@devbobo's](https://gist.github.com/devbobo) original work and assistance of [@thehoff](https://github.com/thehoff)  
+Thanks to [@devbobo's](https://gist.github.com/devbobo) original work and assistance of [@thehoff](https://github.com/thehoff)  
+
+- [1. Logging into SpaNET](#1-logging-into-spanet)
+  - [1.1. Obtaining Login Password](#11-obtaining-login-password)
+  - [1.2. Making Login Request](#12-making-login-request)
+- [2. Spa Socket](#2-spa-socket)
+  - [2.1. Spa Socket Request](#21-spa-socket-request)
+  - [2.2. Connecting to Spa Socket](#22-connecting-to-spa-socket)
+- [3. Spa Status](#3-spa-status)
+- [4. Commands](#4-commands)
+  - [4.1. Spa](#41-spa)
+    - [4.1.1. Temperature](#411-temperature)
+    - [4.1.2. Clean/Santise](#412-cleansantise)
+  - [4.2. Pumps](#42-pumps)
+    - [4.2.1. Pump 1](#421-pump-1)
+    - [4.2.2. Pump 2](#422-pump-2)
+    - [4.2.3. Pump 3](#423-pump-3)
+    - [4.2.4. Pump 4](#424-pump-4)
+    - [4.2.5. Pump 5](#425-pump-5)
+  - [4.3. Blower](#43-blower)
+    - [4.3.1. Blower](#431-blower)
+    - [4.3.2. Blower Variable Speed](#432-blower-variable-speed)
+  - [4.4. Lights](#44-lights)
+    - [4.4.1. Lights](#441-lights)
+    - [4.4.2. Lights Off](#442-lights-off)
+    - [4.4.3. Lights mode](#443-lights-mode)
+    - [4.4.4. Lights brightness](#444-lights-brightness)
+    - [4.4.5. Lights effect speed](#445-lights-effect-speed)
+    - [4.4.6. Lights colour](#446-lights-colour)
+  - [4.5. Settings](#45-settings)
+    - [4.5.1. Operation Mode](#451-operation-mode)
+    - [4.5.2. Filtration](#452-filtration)
+      - [4.5.2.1. Filtration Runtime](#4521-filtration-runtime)
+      - [4.5.2.2. Time Between Filtration Cycles](#4522-time-between-filtration-cycles)
+    - [4.5.3. Sleep Timers](#453-sleep-timers)
+      - [4.5.3.1. Sleep Timer 1 State](#4531-sleep-timer-1-state)
+      - [4.5.3.2. Sleep Timer 1 Start Time](#4532-sleep-timer-1-start-time)
+      - [4.5.3.3. Sleep Timer 1 Finish Time](#4533-sleep-timer-1-finish-time)
+      - [4.5.3.4. Sleep Timer 2 State](#4534-sleep-timer-2-state)
+      - [4.5.3.5. Sleep Timer 2 Start Time](#4535-sleep-timer-2-start-time)
+      - [4.5.3.6. Sleep Timer 2 Finish Time](#4536-sleep-timer-2-finish-time)
+    - [4.5.4. Power Save](#454-power-save)
+      - [4.5.4.1. Power Save](#4541-power-save)
+      - [4.5.4.2. Peak Power Time Start](#4542-peak-power-time-start)
+      - [4.5.4.3. Peak Power Time End](#4543-peak-power-time-end)
+    - [4.5.5. Auto Santise](#455-auto-santise)
+    - [4.5.6. Time Out Duration](#456-time-out-duration)
+    - [4.5.7. Heat Pump Mode](#457-heat-pump-mode)
+      - [4.5.7.1. Heat Pump Mode](#4571-heat-pump-mode)
+      - [4.5.7.2. SV Element Boost](#4572-sv-element-boost)
+    - [4.5.8. Set Time/Date](#458-set-timedate)
+      - [4.5.8.1. Time: Hour](#4581-time-hour)
+      - [4.5.8.2. Time: Minute](#4582-time-minute)
+      - [4.5.8.3. Date: Year](#4583-date-year)
+      - [4.5.8.4. Date: Month](#4584-date-month)
+      - [4.5.8.5. Date: Day](#4585-date-day)
+    - [4.5.9. Support Mode](#459-support-mode)
+    - [4.5.10. Lock Mode](#4510-lock-mode)
+    - [4.5.11. Notification](#4511-notification)
+- [5. Raw command list](#5-raw-command-list)
+- [6. Reading Spa Data](#6-reading-spa-data)
+  - [6.1. Spa Status](#61-spa-status)
+    - [6.1.1. Set Temperature](#611-set-temperature)
+    - [6.1.2. Water Temperature](#612-water-temperature)
+    - [6.1.3. Heater Temperature](#613-heater-temperature)
+    - [6.1.4. Pool Temperature](#614-pool-temperature)
+    - [6.1.5. Heating](#615-heating)
+    - [6.1.6. Cleaning (UV/Ozone running)](#616-cleaning-uvozone-running)
+    - [6.1.7. Cleaning (Sanitise cycle running)](#617-cleaning-sanitise-cycle-running)
+    - [6.1.8. Auto](#618-auto)
+    - [6.1.9. Sleeping](#619-sleeping)
+    - [6.1.10. Water Present](#6110-water-present)
+    - [6.1.11. Awake Minutes Remaining](#6111-awake-minutes-remaining)
+    - [6.1.12. Filter Pump Runtime Total](#6112-filter-pump-runtime-total)
+    - [6.1.13. Filter Pump Req Minutes](#6113-filter-pump-req-minutes)
+    - [6.1.14. Load Timeout](#6114-load-timeout)
+    - [6.1.15. Load Timeout](#6115-load-timeout)
+    - [6.1.16. Hour Meter](#6116-hour-meter)
+    - [6.1.17. Relay 1](#6117-relay-1)
+    - [6.1.18. Relay 2](#6118-relay-2)
+    - [6.1.19. Relay 3](#6119-relay-3)
+    - [6.1.20. Relay 4](#6120-relay-4)
+    - [6.1.21. Relay 5](#6121-relay-5)
+    - [6.1.22. Relay 6](#6122-relay-6)
+    - [6.1.23. Relay 7](#6123-relay-7)
+    - [6.1.24. Relay 8](#6124-relay-8)
+    - [6.1.25. Relay 9](#6125-relay-9)
+  - [6.2. Pumps](#62-pumps)
+    - [6.2.1. Pump 1](#621-pump-1)
+      - [6.2.1.1. Pump 1](#6211-pump-1)
+      - [6.2.1.2. Pump 1 Installation State](#6212-pump-1-installation-state)
+    - [6.2.2. Pump 2](#622-pump-2)
+      - [6.2.2.1. Pump 2](#6221-pump-2)
+      - [6.2.2.2. Pump 2 Installation State](#6222-pump-2-installation-state)
+      - [6.2.2.3. Pump 2 Switch On Status](#6223-pump-2-switch-on-status)
+    - [6.2.3. Pump 3](#623-pump-3)
+      - [6.2.3.1. Pump 3](#6231-pump-3)
+      - [6.2.3.2. Pump 3 Installation State](#6232-pump-3-installation-state)
+      - [6.2.3.3. Pump 3 Switch On Status](#6233-pump-3-switch-on-status)
+    - [6.2.4. Pump 4](#624-pump-4)
+      - [6.2.4.1. Pump 4](#6241-pump-4)
+      - [6.2.4.2. Pump 4 Installation State](#6242-pump-4-installation-state)
+      - [6.2.4.3. Pump 4 Switch On Status](#6243-pump-4-switch-on-status)
+    - [6.2.5. Pump 5](#625-pump-5)
+      - [6.2.5.1. Pump 5 Installation State](#6251-pump-5-installation-state)
+      - [6.2.5.2. Pump 5 Switch On Status](#6252-pump-5-switch-on-status)
+  - [6.3. Blower](#63-blower)
+    - [6.3.1. Blower](#631-blower)
+    - [6.3.2. Blower Variable Speed](#632-blower-variable-speed)
+  - [6.4. Lights](#64-lights)
+    - [6.4.1. Lights](#641-lights)
+    - [6.4.2. Lights Mode](#642-lights-mode)
+    - [6.4.3. Lights Brightness](#643-lights-brightness)
+    - [6.4.4. Lights Effect Speed](#644-lights-effect-speed)
+    - [6.4.5. Lights Colour](#645-lights-colour)
+  - [6.5. Settings](#65-settings)
+    - [6.5.1. Operation Mode](#651-operation-mode)
+    - [6.5.2. Filtration](#652-filtration)
+      - [6.5.2.1. Filtration Runtime](#6521-filtration-runtime)
+      - [6.5.2.2. Time Between Filtration Cycles](#6522-time-between-filtration-cycles)
+    - [6.5.3. Sleep Timers](#653-sleep-timers)
+      - [6.5.3.1. Sleep Timer 1 State](#6531-sleep-timer-1-state)
+      - [6.5.3.2. Sleep Timer 1 Start Time](#6532-sleep-timer-1-start-time)
+      - [6.5.3.3. Sleep Timer 1 Finish Time](#6533-sleep-timer-1-finish-time)
+      - [6.5.3.4. Sleep Timer 2 State](#6534-sleep-timer-2-state)
+      - [6.5.3.5. Sleep Timer 2 Start Time](#6535-sleep-timer-2-start-time)
+      - [6.5.3.6. Sleep Timer 2 Finish Time](#6536-sleep-timer-2-finish-time)
+    - [6.5.4. Power Save](#654-power-save)
+      - [6.5.4.1. Power Save](#6541-power-save)
+      - [6.5.4.2. Peak Power Time Start](#6542-peak-power-time-start)
+      - [6.5.4.3. Peak Power Time End](#6543-peak-power-time-end)
+    - [6.5.5. Auto Sanitise](#655-auto-sanitise)
+    - [6.5.6. Time Out Mode](#656-time-out-mode)
+    - [6.5.7. Heat Pump Mode](#657-heat-pump-mode)
+      - [6.5.7.1. Heat Pump Mode](#6571-heat-pump-mode)
+      - [6.5.7.2. SV Element Boost](#6572-sv-element-boost)
+    - [6.5.8. Time/Date](#658-timedate)
+      - [6.5.8.1. Time: Hour](#6581-time-hour)
+      - [6.5.8.2. Time: Minute](#6582-time-minute)
+      - [6.5.8.3. Date: Year](#6583-date-year)
+      - [6.5.8.4. Date: Month](#6584-date-month)
+      - [6.5.8.5. Date: Day](#6585-date-day)
+    - [6.5.9. Support Mode](#659-support-mode)
+    - [6.5.10. Lock Mode](#6510-lock-mode)
+    - [6.5.11. Notification](#6511-notification)
+  - [6.6. Operating Environment](#66-operating-environment)
+    - [6.6.1. Power](#661-power)
+      - [6.6.1.1. Supply Volts](#6611-supply-volts)
+      - [6.6.1.2. Current Draw](#6612-current-draw)
+      - [6.6.1.3. Variable Heat Element Current Draw](#6613-variable-heat-element-current-draw)
+    - [6.6.2. Environment](#662-environment)
+      - [6.6.2.1. Case Temperature](#6621-case-temperature)
+  - [6.7. OEM Settings](#67-oem-settings)
+    - [6.7.1. Current Limit](#671-current-limit)
+    - [6.7.2. Load Shed](#672-load-shed)
+
   
-### Table of Contents
-* 1\. Logging into SpaNET
-  * 1.1 Obtaining Login Password
-  * 1.2 Making Login Request
-* 2\. Spa Socket
-  * 2.1 Spa Socket Request
-  * 2.2 Connecting to Spa Socket
-* 3\. Spa Status
-* 4\. Commands API
-  * 4.1 Spa
-    * 4.1.1 Temperature
-    * 4.1.2 Clean/Sanitise
-  * 4.2 Pumps
-    * 4.2.1 Pump 1
-    * 4.2.2 Pump 2
-    * 4.2.3 Pump 3
-    * 4.2.4 Pump 4
-    * 4.2.5 Pump 5
-  * 4.3 Blower
-    * 4.3.1 Blower
-    * 4.3.2 Blower Variable Speed
-  * 4.4 Lights
-    * 4.4.1 Lights
-    * 4.4.2 Lights Off
-    * 4.4.3 Lights Mode
-    * 4.4.4 Lights Brightness
-    * 4.4.5 Lights Effect Speed
-    * 4.4.6 Lights Colour
-  * 4.5 Settings
-    * 4.5.1 Operation Mode
-    * 4.5.2 Filtration
-      * Filtration Runtime
-      * Time Between Filtration Cycles
-    * 4.5.3 Sleep Timers
-      * Sleep Timer 1 State
-      * Sleep Timer 1 Start Time
-      * Sleep Timer 1 Finish Time
-      * Sleep Timer 2 State
-      * Sleep Timer 2 Start Time
-      * Sleep Timer 2 Finish Time
-    * 4.5.4 Power Save
-      * Power Save
-      * Peak Power Time Start
-      * Peak Power Time End
-    * 4.5.5 Auto Sanitise
-    * 4.5.6 Time Out Duration
-    * 4.5.7 Heat Pump Mode
-      * Heat Pump Mode
-      * SV Element Boost
-    * 4.5.8 Set Time/Date
-      * Time: Hour
-      * Time: Minute
-      * Date: Year
-      * Date: Month
-      * Date: Day
-    * 4.5.9 Support Mode
-    * 4.5.10 Lock Mode
-    * 4.5.11 Notifications
-* 5\. Raw Commands List
-* 6\. Reading Spa Data API
-* 6.1 Spa
-    * 6.1.1 Set Temperature
-    * 6.1.2 Water Temperature
-    * 6.1.3 Heating
-    * 6.1.4 Cleaning (UV/Ozone Running)
-    * 6.1.5 Cleaning (Sanitise Cycle Running)
-    * 6.1.6 Auto
-    * 6.1.7 Sleeping
-  * 6.2 Pumps
-    * 6.2.1 Pump 1
-      * Pump 1
-      * Pump 1 Installation State
-    * 6.2.2 Pump 2
-      * Pump 2
-      * Pump 2 Installation State
-      * Pump 2 Switch On Status
-    * 6.2.3 Pump 3
-      * Pump 3
-      * Pump 3 Installation State
-      * Pump 3 Switch On Status
-    * 6.2.4 Pump 4
-      * Pump 4
-      * Pump 4 Installation State
-      * Pump 4 Switch On Status
-    * 6.2.5 Pump 5
-      * Pump 5
-      * Pump 5 Installation State
-      * Pump 5 Switch On Status
-  * 6.3 Blower
-    * 6.3.1 Blower
-    * 6.3.2 Blower Variable Speed
-  * 6.4 Lights
-    * 6.4.1 Lights
-    * 6.4.2 Lights Off
-    * 6.4.3 Lights Mode
-    * 6.4.4 Lights Brightness
-    * 6.4.5 Lights Effect Speed
-    * 6.4.6 Lights Colour
-  * 6.5 Settings
-    * 6.5.1 Operation Mode
-    * 6.5.2 Filtration
-      * Filtration Runtime
-      * Time Between Filtration Cycles
-    * 6.5.3 Sleep Timers
-      * Sleep Timer 1 State
-      * Sleep Timer 1 Start Time
-      * Sleep Timer 1 Finish Time
-      * Sleep Timer 2 State
-      * Sleep Timer 2 Start Time
-      * Sleep Timer 2 Finish Time
-    * 6.5.4 Power Save
-      * Power Save
-      * Peak Power Time Start
-      * Peak Power Time End
-    * 6.5.5 Auto Sanitise
-    * 6.5.6 Time Out Duration
-    * 6.5.7 Heat Pump Mode
-      * Heat Pump Mode
-      * SV Element Boost
-    * 6.5.8 Time/Date
-      * Time: Hour
-      * Time: Minute
-      * Date: Year
-      * Date: Month
-      * Date: Day
-    * 6.5.9 Support Mode
-    * 6.5.10 Lock Mode
-    * 6.5.11 Notifications
-* 7\. SpaNET API Requests List
-  
-### 1. Logging into SpaNET
-#### 1.1 Obtaining Login Password
+## 1. Logging into SpaNET
+### 1.1. Obtaining Login Password
 To obtain your Encrypted Password for use below, use the utility for your platform from @thehoff's [SpaNET Password Hash Generator](https://github.com/thehoff/spanet-password-creator)
 
-#### 1.2 Making Login Request
+### 1.2. Making Login Request
 `POST` https://api.spanet.net.au/api/MemberLogin
 
 *Request:*
@@ -165,8 +190,8 @@ To obtain your Encrypted Password for use below, use the utility for your platfo
 }
 ```
 
-### 2. Spa Socket
-#### 2.1 Spa Socket Request
+## 2. Spa Socket
+### 2.1. Spa Socket Request
 `GET` https://api.spanet.net.au/api/membersockets?id_member=[MemberId]&id_session=[SessionId]
 
 *Response:*
@@ -200,7 +225,7 @@ To obtain your Encrypted Password for use below, use the utility for your platfo
 }
 ```
 
-#### 2.2 Connecting to Spa Socket
+### 2.2. Connecting to Spa Socket
 Open TCP Socket to `[WebUrl]` port `9090`, then send:
 
 *Request:*
@@ -213,7 +238,7 @@ Open TCP Socket to `[WebUrl]` port `9090`, then send:
 Successfully connected
 ```
 
-### 3. Spa Status
+## 3. Spa Status
 Get the current status of the spa.
 
 *Request:*
@@ -239,10 +264,10 @@ RF:
 ```
 Full documentation of parsing this data is below at section 7
 
-### 4. Commands
-##### NOTE - Make sure to include newline (\n) after all websocket commands
-#### 4.1 Spa
-##### 4.1.1 Temperature
+## 4. Commands
+NOTE - Make sure to include newline (\n) after all websocket commands
+### 4.1. Spa
+#### 4.1.1. Temperature
 Set the target temperature for the spa.
 
 *Request:*
@@ -256,7 +281,7 @@ nnn
 ```
 where `nnn` denotes temperature in celsius * 10  between `5.0`-`41.0`c (ie: for 35.6c, `nnn` = 356)
 
-##### 4.1.2 Clean/Santise
+#### 4.1.2. Clean/Santise
 Start (or cancel) a Clean cycle.
 
 *Request:*
@@ -269,8 +294,8 @@ W12
 W12
 ```
 
-#### 4.2 Pumps
-##### 4.2.1 Pump 1
+### 4.2. Pumps
+#### 4.2.1. Pump 1
 Control Pump 1.
 
 *Request:*
@@ -287,7 +312,7 @@ where `n` denotes
 * `1` - On
 * `4` - Auto
 
-##### 4.2.2 Pump 2
+#### 4.2.2. Pump 2
 Control Pump 2.
 
 *Request:*
@@ -303,7 +328,7 @@ where `n` denotes
 * `0` - Off
 * `1` - On
 
-##### 4.2.3 Pump 3
+#### 4.2.3. Pump 3
 Control Pump 3.
 
 *Request:*
@@ -319,7 +344,7 @@ where `n` denotes
 * `0` - Off
 * `1` - On
 
-##### 4.2.4 Pump 4
+#### 4.2.4. Pump 4
 Control Pump 4, if installed (section 6.2 shows how to check whether pumps are installed).
 
 *Request:*
@@ -335,7 +360,7 @@ where `n` denotes
 * `0` - Off
 * `1` - On
 
-##### 4.2.5 Pump 5
+#### 4.2.5. Pump 5
 Control Pump 5, if installed (section 6.2 shows how to check whether pumps are installed).
 
 *Request:*
@@ -351,8 +376,8 @@ where `n` denotes
 * `0` - Off
 * `1` - On
 
-#### 4.3 Blower
-##### 4.3.1 Blower
+### 4.3. Blower
+#### 4.3.1. Blower
 Control the Blower.
 
 *Request:*
@@ -369,7 +394,7 @@ where `n` denotes
 * `1` - Ramp
 * `2` - Off
 
-##### 4.3.2 Blower Variable Speed
+#### 4.3.2. Blower Variable Speed
 Set the variable speed of the blower.
 
 *Request:*
@@ -383,8 +408,8 @@ n  S13
 ```
 where `n` denotes speed `1`-`5`
 
-#### 4.4 Lights
-##### 4.4.1 Lights
+### 4.4. Lights
+#### 4.4.1. Lights
 Toggle the state of the lights (on/off). Other commands should be sent first to set the brightness, mode, effect speed and colour if applicable otherwise last used settings will be applied.
 
 *Request:*
@@ -397,7 +422,7 @@ W14
 W14
 ```
 
-##### 4.4.2 Lights Off
+#### 4.4.2. Lights Off
 Turn all lights off.
 
 *Request:*
@@ -410,7 +435,7 @@ S11
 S11
 ```
 
-##### 4.4.3 Lights mode
+#### 4.4.3. Lights mode
 Set the mode for the lights.
 
 *Request:*
@@ -429,7 +454,7 @@ where `n` denotes
 * `3` - Step
 * `4` - Party
 
-##### 4.4.4 Lights brightness
+#### 4.4.4. Lights brightness
 Set the brightness for the lights.
 
 *Request:*
@@ -443,7 +468,7 @@ n  S08
 ```
 where `n` denotes brightness `1`-`5`
 
-##### 4.4.5 Lights effect speed
+#### 4.4.5. Lights effect speed
 Set the effect speed for the lights. Only applicable for modes fade, step and party.
 
 *Request:*
@@ -457,7 +482,7 @@ n  S09
 ```
 where `n` denotes effect speed `1`-`5`
 
-##### 4.4.6 Lights colour
+#### 4.4.6. Lights colour
 Set the colour for the lights. Only applicable for colour mode.
 
 *Request:*
@@ -471,8 +496,8 @@ n  S10
 ```
 where `n` denotes colour `0`-`30`
 
-#### 4.5 Settings
-##### 4.5.1 Operation Mode
+### 4.5. Settings
+#### 4.5.1. Operation Mode
 Set the operation mode.
 
 *Request:*
@@ -490,8 +515,8 @@ where `n` denotes
 * `2` - Away
 * `3` - Week
 
-##### 4.5.2 Filtration
-###### Filtration Runtime
+#### 4.5.2. Filtration
+##### 4.5.2.1. Filtration Runtime
 Set the filtration runtime.
 
 *Request:*
@@ -505,7 +530,7 @@ n
 ```
 where `n` denotes hours between `1`-`24`.
 
-###### Time Between Filtration Cycles
+##### 4.5.2.2. Time Between Filtration Cycles
 Set the time between filtration cycles.
 
 *Request:*
@@ -527,8 +552,8 @@ where `n` denotes hours as
 * `12` - 12 hr
 * `24` - 24 hr
 
-##### 4.5.3 Sleep Timers
-###### Sleep Timer 1 State
+#### 4.5.3. Sleep Timers
+##### 4.5.3.1. Sleep Timer 1 State
 Set the state of sleep timer 1.
 
 *Request:*
@@ -546,7 +571,7 @@ where `n` denotes
 * `96` - Weekends
 * `31` - Weekdays
 
-###### Sleep Timer 1 Start Time
+##### 4.5.3.2. Sleep Timer 1 Start Time
 Set the start time of sleep timer 1 in 24-hour time.
 
 *Request:*
@@ -560,7 +585,7 @@ nnnn
 ```
 where `nnnn` denotes time between `0`-`5947` with the formula `h*256+m` (ie: for 20:00, `nnnn` = 20\*256+0 = 5120; for 13:47, `nnnn` = 13\*256+47 = 3375)
 
-###### Sleep Timer 1 Finish Time
+##### 4.5.3.3. Sleep Timer 1 Finish Time
 Set the finish time of sleep timer 1 in 24-hour time.
 
 *Request:*
@@ -574,7 +599,7 @@ nnnn
 ```
 where `nnnn` denotes time between `0`-`5947` with the formula `h*256+m` (ie: for 20:00, `nnnn` = 20\*256+0 = 5120; for 13:47, `nnnn` = 13\*256+47 = 3375)
 
-###### Sleep Timer 2 State
+##### 4.5.3.4. Sleep Timer 2 State
 Set the state of sleep timer 2.
 
 *Request:*
@@ -592,7 +617,7 @@ where `n` denotes
 * `96` - Weekends
 * `31` - Weekdays
 
-###### Sleep Timer 2 Start Time
+##### 4.5.3.5. Sleep Timer 2 Start Time
 Set the start time of sleep timer 2 in 24-hour time.
 
 *Request:*
@@ -606,7 +631,7 @@ nnnn
 ```
 where `nnnn` denotes time between `0`-`5947` with the formula `h*256+m` (ie: for 20:00, `nnnn` = 20\*256+0 = 5120; for 13:47, `nnnn` = 13\*256+47 = 3375)
 
-###### Sleep Timer 2 Finish Time
+##### 4.5.3.6. Sleep Timer 2 Finish Time
 Set the finish time of sleep timer 2 in 24-hour time.
 
 *Request:*
@@ -620,8 +645,8 @@ nnnn
 ```
 where `nnnn` denotes time between `0`-`5947` with the formula `h*256+m` (ie: for 20:00, `nnnn` = 20\*256+0 = 5120; for 13:47, `nnnn` = 13\*256+47 = 3375)
 
-##### 4.5.4 Power Save
-###### Power Save
+#### 4.5.4. Power Save
+##### 4.5.4.1. Power Save
 Set the Power Save option.
 
 *Request:*
@@ -638,7 +663,7 @@ where `n` denotes
 * `1` - Low
 * `2` - High
 
-###### Peak Power Time Start
+##### 4.5.4.2. Peak Power Time Start
 Set the start of the Peak Power Time, in hours and minutes.
 
 *Request:*
@@ -652,7 +677,7 @@ nnnn
 ```
 where `nnnn` denotes time between `0`-`5947` with the formula `h*256+m` (ie: for 20:00, `nnnn` = 20\*256+0 = 5120; for 13:47, `nnnn` = 13\*256+47 = 3375)
 
-###### Peak Power Time End
+##### 4.5.4.3. Peak Power Time End
 Set the end of the Peak Power Time, in hours and minutes.
 
 *Request:*
@@ -666,7 +691,7 @@ nnnn
 ```
 where `nnnn` denotes time between `0`-`5947` with the formula `h*256+m` (ie: for 20:00, `nnnn` = 20\*256+0 = 5120; for 13:47, `nnnn` = 13\*256+47 = 3375)
 
-##### 4.5.5 Auto Santise
+#### 4.5.5. Auto Santise
 Set the Auto Sanitise starting time.
 
 *Request:*
@@ -680,7 +705,7 @@ nnnn
 ```
 where `nnnn` denotes time between `0`-`5947` with the formula `h*256+m` (ie: for 20:00, `nnnn` = 20\*256+0 = 5120; for 13:47, `nnnn` = 13\*256+47 = 3375)
 
-##### 4.5.6 Time Out Duration
+#### 4.5.6. Time Out Duration
 Set the Time Out duration for pumps and blower.
 
 *Request:*
@@ -694,8 +719,8 @@ nn
 ```
 where `nn` denotes time in minutes from `10`-`60`
 
-##### 4.5.7 Heat Pump Mode
-###### Heat Pump Mode
+#### 4.5.7. Heat Pump Mode
+##### 4.5.7.1. Heat Pump Mode
 Set the Heat Pump Mode.
 
 *Request:*
@@ -713,7 +738,7 @@ where `n` denotes
 * `2` - Cool
 * `3` - Disabled
 
-###### SV Element Boost
+##### 4.5.7.2. SV Element Boost
 Turn on/off SV Element Boost.
 
 *Request:*
@@ -729,8 +754,8 @@ where `n` denotes
 * `0` - Off
 * `1` - On
 
-##### 4.5.8 Set Time/Date
-###### Time: Hour
+#### 4.5.8. Set Time/Date
+##### 4.5.8.1. Time: Hour
 Set the hour of the day for the spa.
 
 *Request:*
@@ -745,7 +770,7 @@ S04
 ```
 where `nn` denotes hour of the day from `0`-`23`
 
-###### Time: Minute
+##### 4.5.8.2. Time: Minute
 Set the minute of the hour for the spa.
 
 *Request:*
@@ -760,7 +785,7 @@ S05
 ```
 where `nn` denotes minute of the hour from `00`-`59`
 
-###### Date: Year
+##### 4.5.8.3. Date: Year
 Set the year for the spa.
 
 *Request:*
@@ -775,7 +800,7 @@ S01
 ```
 where `nnnn` denotes a valid year from `1970`-`2037` (correct 2021)
 
-###### Date: Month
+##### 4.5.8.4. Date: Month
 Set the month for the spa.
 
 *Request:*
@@ -790,7 +815,7 @@ S02
 ```
 where `nn` denotes the month represented by a number from `1`-`12`
 
-###### Date: Day
+##### 4.5.8.5. Date: Day
 Set the day for the spa.
 
 *Request:*
@@ -805,7 +830,7 @@ S03
 ```
 where `nn` denotes the day represented from `1`-`31` (must be a valid day for the current month)
 
-##### 4.5.9 Support Mode
+#### 4.5.9. Support Mode
 Set support mode on/off for the spa with a pin.
 
 `POST` https://api.spanet.net.au/api/MemberLogin
@@ -829,7 +854,7 @@ Set support mode on/off for the spa with a pin.
 ```
 where Pin is either a 6-digit pin which will be used as the support code to turn it on (should be randomly generated by code), or a blank string to turn it off ("").
 
-##### 4.5.10 Lock Mode
+#### 4.5.10. Lock Mode
 Set the Lock Mode.
 
 *Request:*
@@ -846,7 +871,7 @@ where `n` denotes
 * `1` - Partial
 * `2` - Full
 
-##### 4.5.11 Notification
+#### 4.5.11. Notification
 Set push notification mode on/off
 
 `GET` https://api.spanet.net.au/api/membersetnotification?login=[Username]&password=[Encrypted Password]&token=(null)&notificationOnOff=[Bool]&type=1
@@ -862,7 +887,7 @@ Set push notification mode on/off
 ```
 where Bool is either true for notifications on, or false for notifications off.
 
-### 5. Raw command list
+## 5. Raw command list
 
 S01 - Date / Year  
 S02 - Date / Month  
@@ -904,9 +929,8 @@ W90 - Settings / Time Between Filtration Cycles
 W98 - Settings / SV Element Boost  
 W99 - Settings / Heat Pump Mode  
 
-### 6. Reading Spa Data
-##### NOTE:
-The command to get spa data is RF\n as shown in section 4
+## 6. Reading Spa Data
+NOTE: The command to get spa data is RF\n as shown in section 4
 
 A sample response is:
 ```
@@ -927,8 +951,8 @@ RF:
 
 Each below aspect of the spa will show which value of this RF fix needs to be read and what it's possible values are. It will say the read line (R2, R3, R4 etc.) and the read bit, which is the index number of the value to read from the line seperated by commas. The first value of each line is index number 2 (the name of each line is index number 1). e.g. If an aspect of the spa was represented by the 70 on line R2, the information for reading it would be *Line R2, Read Bit 5*.
 
-#### 6.1 Spa Status
-##### 6.1.1 Set Temperature
+### 6.1. Spa Status
+#### 6.1.1. Set Temperature
 `,R6,1,5,30,2,5,8,1,`360`,1,0,3584,5120,127,128,5632,5632,2304,1792,0,30,0,0,0,0,2,3,0,:`
 
 Line: R6  
@@ -937,7 +961,7 @@ Data Type: Integer
 Range: `50` to `410`  
 Data: Represents spa set temperature in degrees celcius * 10 (e.g. `360` is 36.00°C and `76` is 7.60°C)
 
-##### 6.1.2 Water Temperature
+#### 6.1.2. Water Temperature
 `,R5,0,1,0,1,0,0,0,0,0,0,1,0,1,0,`376`,0,3,4,0,0,0,0,0,1,2,6,:`
 
 Line: R5  
@@ -945,7 +969,23 @@ Read Bit: 16
 Data Type: Integer  
 Data: Represents spa actual temperature in degrees celcius * 10 (e.g. `360` is 36.00°C and `76` is 7.60°C)
 
-##### 6.1.3 Heating
+#### 6.1.3. Heater Temperature
+`,R2,18,250,51,70,4,13,50,55,19,6,2020,`376`,9999,1,0,490,207,34,6000,602,23,20,0,0,0,0,44,35,45,:`
+
+Line: R2  
+Read Bit: 13  
+Data Type: Integer  
+Data: Represents heater temperature in degrees celcius * 10 (e.g. `360` is 36.00°C and `76` is 7.60°C)
+
+#### 6.1.4. Pool Temperature
+`,R2,0,243,43,223,6,19,14,36,9,1,2022,320,`9999`,1,0,106,607,0,147,33207,791,819,0,721,0,0,1673,354,854,241,:`
+
+Line: R2  
+Read Bit: 14  
+Data Type: Integer  
+Data: Pool temperature * 10.  Note seems to return rubish value on most spas.  Use Water Temperature instead.
+
+#### 6.1.5. Heating
 `,R5,0,1,0,1,0,0,0,0,0,0,1,`0`,1,0,376,0,3,4,0,0,0,0,0,1,2,6,:`
 
 Line: R5  
@@ -954,7 +994,7 @@ Data Type: Integer
 Range: `0` to `1`  
 Data: Integer is `1` when the heater is on (currently heating/cooling the water) and `0` when it is off
 
-##### 6.1.4 Cleaning (UV/Ozone running)
+#### 6.1.6. Cleaning (UV/Ozone running)
 `,R5,0,1,0,1,0,0,0,0,0,0,`1`,0,1,0,376,0,3,4,0,0,0,0,0,1,2,6,:`
 
 Line: R5  
@@ -963,7 +1003,7 @@ Data Type: Integer
 Range: `0` to `1`  
 Data: Integer is `1` when the Ozone/UV is cleaning the spa and `0` when it is off
 
-##### 6.1.5 Cleaning (Sanitise cycle running)
+#### 6.1.7. Cleaning (Sanitise cycle running)
 `,R5,0,1,0,1,0,0,0,0,0,0,1,0,1,0,376,`0`,3,4,0,0,0,0,0,1,2,6,:`
 
 Line: R5  
@@ -972,7 +1012,7 @@ Data Type: Integer
 Range: `0` to `1`  
 Data: Integer is `1` when clean cycle is running and `0` when it is not
 
-##### 6.1.6 Auto
+#### 6.1.8. Auto
 `,R5,0,1,0,1,0,0,0,0,0,0,1,0,`1`,0,376,0,3,4,0,0,0,0,0,1,2,6,:`
 
 Line: R5  
@@ -981,7 +1021,7 @@ Data Type: Integer
 Range: `0` to `1`  
 Data: Integer is `1` when the auto is enabled and `0` when it is not
 
-##### 6.1.7 Sleeping
+#### 6.1.9. Sleeping
 `,R5,0,1,0,1,0,0,0,0,0,`0`,1,0,1,0,376,0,3,4,0,0,0,0,0,1,2,6,:`
 
 Line: R5  
@@ -990,33 +1030,151 @@ Data Type: Integer
 Range: `0` to `1`  
 Data: Integer is `1` when the spa is currently sleeping due to a sleep timer `0` when it is not
 
-##### 6.1.8 Heater Temperature
-`,R2,18,250,51,70,4,13,50,55,19,6,2020,`376`,9999,1,0,490,207,34,6000,602,23,20,0,0,0,0,44,35,45,:`
-
-Line: R2  
-Read Bit: 13  
-Data Type: Integer  
-Data: Represents heater temperature in degrees celcius * 10 (e.g. `360` is 36.00°C and `76` is 7.60°C)
-
-##### 6.1.8 Pool Temperature
-`,R2,0,243,43,223,6,19,14,36,9,1,2022,320,`9999`,1,0,106,607,0,147,33207,791,819,0,721,0,0,1673,354,854,241,:`
-
-Line: R2
-Read Bit: 14
-Data Type: Integer
-Data: Pool temperature * 10.  Note seems to return rubish value on most spas.  Use Water Temperature instead.
-
-##### 6.1.8 Water Present
+#### 6.1.10. Water Present
 `,R2,0,243,43,223,6,19,14,36,9,1,2022,320,9999,`1`,0,106,607,0,147,33207,791,819,0,721,0,0,1673,354,854,241,:`
 
-Line: R2
-Read Bit: 15
-Data Type: Integer
+Line: R2  
+Read Bit: 15  
+Data Type: Integer  
 Data: 1 = Water present, 0 = No water detected
 
-#### 6.2 Pumps
-##### 6.2.1 Pump 1
-###### Pump 1
+#### 6.1.11. Awake Minutes Remaining
+`,R2,0,243,43,223,6,19,14,36,9,1,2022,320,9999,1,0,`106`,607,0,147,33207,791,819,0,721,0,0,1673,354,854,241,:`
+
+Line: R2  
+Read Bit: 17  
+Data Type: Integer  
+Data: Minutes remaining of Awake time.  Note: Clarification of this would be appreciated.
+
+#### 6.1.12. Filter Pump Runtime Total
+`,R2,0,243,43,223,6,19,14,36,9,1,2022,320,9999,1,0,106,`607`,0,147,33207,791,819,0,721,0,0,1673,354,854,241,:`
+
+Line: R2  
+Read Bit: 18  
+Data Type: Integer  
+Data: Total filter pump run time (min)
+
+#### 6.1.13. Filter Pump Req Minutes
+`,R2,0,243,43,223,6,19,14,36,9,1,2022,320,9999,1,0,106,607,`0`,147,33207,791,819,0,721,0,0,1673,354,854,241,:`
+
+Line: R2  
+Read Bit: 19  
+Data Type: Integer  
+Data Unit: Minutes  
+Data: Unsure
+
+#### 6.1.14. Load Timeout
+`,R2,0,243,43,223,6,19,14,36,9,1,2022,320,9999,1,0,106,607,0,`147`,33207,791,819,0,721,0,0,1673,354,854,241,:`
+
+Line: R2  
+Read Bit: 20  
+Data Type: Integer  
+Data Unit of Measure: Seconds  
+Data: Unsure
+
+#### 6.1.15. Load Timeout
+`,R2,0,243,43,223,6,19,14,36,9,1,2022,320,9999,1,0,106,607,0,147,`33207`,791,819,0,721,0,0,1673,354,854,241,:`
+
+Line: R2  
+Read Bit: 21  
+Data Type: Integer  
+Data Unit of Measure: Seconds  
+Data: Unsure
+
+#### 6.1.16. Hour Meter
+`,R2,0,243,43,223,6,19,14,36,9,1,2022,320,9999,1,0,106,607,0,147,`33207`,791,819,0,721,0,0,1673,354,854,241,:`
+
+Line: R2  
+Read Bit: 22  
+Data Type: Integer  
+Data Unit of Measure: Hours * 10  
+Data: Hours of runtime. 33207 = 3320.7 hours
+
+#### 6.1.17. Relay 1
+`,R2,0,243,43,223,6,19,14,36,9,1,2022,320,9999,1,0,106,607,0,147,33207,`791`,819,0,721,0,0,1673,354,854,241,:`
+
+Line: R2  
+Read Bit: 23  
+Data Type: Integer  
+Data Unit of Measure: Unknown
+Data: Unknown
+
+#### 6.1.18. Relay 2
+`,R2,0,243,43,223,6,19,14,36,9,1,2022,320,9999,1,0,106,607,0,147,33207,791,`819`,0,721,0,0,1673,354,854,241,:`
+
+Line: R2  
+Read Bit: 24  
+Data Type: Integer  
+Data Unit of Measure: Unknown
+Data: Unknown
+
+#### 6.1.19. Relay 3
+`,R2,0,243,43,223,6,19,14,36,9,1,2022,320,9999,1,0,106,607,0,147,33207,791,819,`0`,721,0,0,1673,354,854,241,:`
+
+Line: R2  
+Read Bit: 25  
+Data Type: Integer  
+Data Unit of Measure: Unknown
+Data: Unknown
+
+#### 6.1.20. Relay 4
+`,R2,0,243,43,223,6,19,14,36,9,1,2022,320,9999,1,0,106,607,0,147,33207,791,819,0,`721`,0,0,1673,354,854,241,:`
+
+Line: R2  
+Read Bit: 26  
+Data Type: Integer  
+Data Unit of Measure: Unknown
+Data: Unknown
+
+#### 6.1.21. Relay 5
+`,R2,0,243,43,223,6,19,14,36,9,1,2022,320,9999,1,0,106,607,0,147,33207,791,819,0,721,`0`,0,1673,354,854,241,:`
+
+Line: R2  
+Read Bit: 27  
+Data Type: Integer  
+Data Unit of Measure: Unknown
+Data: Unknown
+
+#### 6.1.22. Relay 6
+`,R2,0,243,43,223,6,19,14,36,9,1,2022,320,9999,1,0,106,607,0,147,33207,791,819,0,721,0,`0`,1673,354,854,241,:`
+
+Line: R2  
+Read Bit: 28  
+Data Type: Integer  
+Data Unit of Measure: Unknown
+Data: Unknown
+
+#### 6.1.23. Relay 7
+`,R2,0,243,43,223,6,19,14,36,9,1,2022,320,9999,1,0,106,607,0,147,33207,791,819,0,721,0,0,`1673`,354,854,241,:`
+
+Line: R2  
+Read Bit: 29  
+Data Type: Integer  
+Data Unit of Measure: Unknown
+Data: Unknown
+
+#### 6.1.24. Relay 8
+`,R2,0,243,43,223,6,19,14,36,9,1,2022,320,9999,1,0,106,607,0,147,33207,791,819,0,721,0,0,1673,`354`,854,241,:`
+
+Line: R2  
+Read Bit: 30  
+Data Type: Integer  
+Data Unit of Measure: Unknown
+Data: Unknown
+
+#### 6.1.25. Relay 9
+`,R2,0,243,43,223,6,19,14,36,9,1,2022,320,9999,1,0,106,607,0,147,33207,791,819,0,721,0,0,1673,354,`854`,241,:`
+
+Line: R2  
+Read Bit: 31  
+Data Type: Integer  
+Data Unit of Measure: Unknown
+Data: Unknown
+
+
+### 6.2. Pumps
+#### 6.2.1. Pump 1
+##### 6.2.1.1. Pump 1
 `,R5,0,1,0,1,0,0,0,0,0,0,1,0,1,0,376,0,3,`4`,0,0,0,0,0,1,2,6,:`
 
 Line: R5  
@@ -1025,7 +1183,7 @@ Data Type: Integer
 Range: `0` to `4`  
 Data: Integer is `4` when pump is set to auto, `1` when it is on and `0` when it is off
 
-###### Pump 1 Installation State
+##### 6.2.1.2. Pump 1 Installation State
 `,RG,1,1,1,1,1,1,`1-1-014`,1-1-01,1-1-01,0-,0-,0,:*`
 
 Line: RG  
@@ -1033,8 +1191,8 @@ Read Bit: 8
 Data Type: String  
 Data: First part (1- or 0-) indicates whether the pump is installed/fitted. If so (1- means it is), the second part (1- above) indicates it's speed type. The third part (014 above) represents it's possible states (0 OFF, 1 ON, 4 AUTO)
 
-##### 6.2.2 Pump 2
-###### Pump 2
+#### 6.2.2. Pump 2
+##### 6.2.2.1. Pump 2
 `,R5,0,1,0,1,0,0,0,0,0,0,1,0,1,0,376,0,3,4,`0`,0,0,0,0,1,2,6,:`
 
 Line: R5  
@@ -1043,7 +1201,7 @@ Data Type: Integer
 Range: `0` to `1`  
 Data: Integer is `1` when pump is on and `0` when it is off
 
-###### Pump 2 Installation State
+##### 6.2.2.2. Pump 2 Installation State
 `,RG,1,1,1,1,1,1,1-1-014,`1-1-01`,1-1-01,0-,0-,0,:*`
 
 Line: RG  
@@ -1051,7 +1209,7 @@ Read Bit: 9
 Data Type: String  
 Data: First part (1- or 0-) indicates whether the pump is installed/fitted. If so (1- means it is), the second part (1- above) indicates it's speed type. The third part (01 above) represents it's possible states (0 OFF, 1 ON)
 
-###### Pump 2 Switch On Status
+##### 6.2.2.3. Pump 2 Switch On Status
 `,RG,1,`1`,1,1,1,1,1-1-014,1-1-01,1-1-01,0-,0-,0,:*`
 
 Line: RG  
@@ -1060,8 +1218,8 @@ Data Type: Integer
 Range: `0` to `1`  
 Data: Integer is `1` when the pump is OK to turn on and `0` when it is not
 
-##### 6.2.3 Pump 3
-###### Pump 3
+#### 6.2.3. Pump 3
+##### 6.2.3.1. Pump 3
 `,R5,0,1,0,1,0,0,0,0,0,0,1,0,1,0,376,0,3,4,0,`0`,0,0,0,1,2,6,:`
 
 Line: R5  
@@ -1070,7 +1228,7 @@ Data Type: Integer
 Range: `0` to `1`  
 Data: Integer is `1` when pump is on and `0` when it is off
 
-###### Pump 3 Installation State
+##### 6.2.3.2. Pump 3 Installation State
 `,RG,1,1,1,1,1,1,1-1-014,1-1-01,`1-1-01`,0-,0-,0,:*`
 
 Line: RG  
@@ -1078,7 +1236,7 @@ Read Bit: 10
 Data Type: String  
 Data: First part (1- or 0-) indicates whether the pump is installed/fitted. If so (1- means it is), the second part (1- above) indicates it's speed type. The third part (01 above) represents it's possible states (0 OFF, 1 ON)
 
-###### Pump 3 Switch On Status
+##### 6.2.3.3. Pump 3 Switch On Status
 `,RG,1,1,`1`,1,1,1,1-1-014,1-1-01,1-1-01,0-,0-,0,:*`
 
 Line: RG  
@@ -1087,8 +1245,8 @@ Data Type: Integer
 Range: `0` to `1`  
 Data: Integer is `1` when the pump is OK to turn on and `0` when it is not
 
-##### 6.2.4 Pump 4
-###### Pump 4
+#### 6.2.4. Pump 4
+##### 6.2.4.1. Pump 4
 `,R5,0,1,0,1,0,0,0,0,0,0,1,0,1,0,376,0,3,4,0,0,`0`,0,0,1,2,6,:`
 
 Line: R5  
@@ -1097,7 +1255,7 @@ Data Type: Integer
 Range: `0` to `1`  
 Data: Integer is `1` when pump is on and `0` when it is off
 
-###### Pump 4 Installation State
+##### 6.2.4.2. Pump 4 Installation State
 `,RG,1,1,1,1,1,1,1-1-014,1-1-01,1-1-01,`0-`,0-,0,:*`
 
 Line: RG  
@@ -1105,7 +1263,7 @@ Read Bit: 11
 Data Type: String  
 Data: First part (1- or 0-) indicates whether the pump is installed/fitted. If so (1- means it is), the second part indicates it's speed type. The third part represents it's possible states
 
-###### Pump 4 Switch On Status
+##### 6.2.4.3. Pump 4 Switch On Status
 `,RG,1,1,1,`1`,1,1,1-1-014,1-1-01,1-1-01,0-,0-,0,:*`
 
 Line: RG  
@@ -1114,7 +1272,7 @@ Data Type: Integer
 Range: `0` to `1`  
 Data: Integer is `1` when the pump is OK to turn on and `0` when it is not
 
-##### 6.2.5 Pump 5
+#### 6.2.5. Pump 5
 `,R5,0,1,0,1,0,0,0,0,0,0,1,0,1,0,376,0,3,4,0,0,0,`0`,0,1,2,6,:`
 
 Line: R5  
@@ -1123,7 +1281,7 @@ Data Type: Integer
 Range: `0` to `1`  
 Data: Integer is `1` when pump is on and `0` when it is off
 
-###### Pump 5 Installation State
+##### 6.2.5.1. Pump 5 Installation State
 `,RG,1,1,1,1,1,1,1-1-014,1-1-01,1-1-01,0-,`0-`,0,:*`
 
 Line: RG  
@@ -1131,7 +1289,7 @@ Read Bit: 12
 Data Type: String  
 Data: First part (1- or 0-) indicates whether the pump is installed/fitted. If so (1- means it is), the second part indicates it's speed type. The third part represents it's possible states
 
-###### Pump 5 Switch On Status
+##### 6.2.5.2. Pump 5 Switch On Status
 `,RG,1,1,1,1,`1`,1,1-1-014,1-1-01,1-1-01,0-,0-,0,:*`
 
 Line: RG  
@@ -1140,8 +1298,8 @@ Data Type: Integer
 Range: `0` to `1`  
 Data: Integer is `1` when the pump is OK to turn on and `0` when it is not
 
-#### 6.3 Blower
-##### 6.3.1 Blower
+### 6.3. Blower
+#### 6.3.1. Blower
 `,RC,0,1,1,0,0,0,0,0,0,`2`,0,0,1,0,:`
 
 Line: RC  
@@ -1150,7 +1308,7 @@ Data Type: Integer
 Range: `0` to `2`  
 Data: Integer is `2` when pump is off, `1` when it is on ramp mode and `0` when it is on variable mode
 
-##### 6.3.1 Blower Variable Speed
+#### 6.3.2. Blower Variable Speed
 `,R6,`1`,5,0,2,5,8,1,360,1,0,3584,5120,127,128,5632,5632,2304,1792,0,30,0,0,0,0,2,3,0,:`
 
 Line: R6  
@@ -1159,8 +1317,8 @@ Data Type: Integer
 Range: `1` to `5`  
 Data: Integer represents blower variable speed from speed `1` to speed `5`
 
-#### 6.4 Lights
-##### 6.4.1 Lights
+### 6.4. Lights
+#### 6.4.1. Lights
 `,R5,0,1,0,1,0,0,0,0,0,0,1,0,1,`0`,376,0,3,4,0,0,0,0,0,1,2,6,:`
 
 Line: R5  
@@ -1169,7 +1327,7 @@ Data Type: Integer
 Range: `0` to `1`  
 Data: Integer is `1` when lights are on `0` when they are off
 
-##### 6.4.2 Lights Mode
+#### 6.4.2. Lights Mode
 `,R6,1,5,0,`2`,5,8,1,360,1,0,3584,5120,127,128,5632,5632,2304,1792,0,30,0,0,0,0,2,3,0,:`
 
 Line: R6  
@@ -1178,7 +1336,7 @@ Data Type: Integer
 Range: `0` to `4`  
 Data: Integer is `0` for mode white, `1` for mode colour, `2` for mode step, `3` for mode fade and `4` for mode party
 
-##### 6.4.3 Lights Brightness
+#### 6.4.3. Lights Brightness
 `,R6,1,`5`,0,2,5,8,1,360,1,0,3584,5120,127,128,5632,5632,2304,1792,0,30,0,0,0,0,2,3,0,:`
 
 Line: R6  
@@ -1187,7 +1345,7 @@ Data Type: Integer
 Range: `1` to `5`  
 Data: Integer represents brightness from `1` to `5`
 
-##### 6.4.4 Lights Effect Speed
+#### 6.4.4. Lights Effect Speed
 `,R6,1,5,30,2,`5`,8,1,360,1,0,3584,5120,127,128,5632,5632,2304,1792,0,30,0,0,0,0,2,3,0,:`
 
 Line: R6  
@@ -1196,7 +1354,7 @@ Data Type: Integer
 Range: `1` to `5`  
 Data: Integer represents effect speed from `1` to `5`
 
-##### 6.4.5 Lights Colour
+#### 6.4.5. Lights Colour
 `,R6,1,5,`0`,2,5,8,1,360,1,0,3584,5120,127,128,5632,5632,2304,1792,0,30,0,0,0,0,2,3,0,:`
 
 Line: R6  
@@ -1205,8 +1363,8 @@ Data Type: Integer
 Range: `0` to `30`  
 Data: Integer represents colour from `0` to `30`
 
-#### 6.5 Settings
-##### 6.5.1 Operation Mode
+### 6.5. Settings
+#### 6.5.1. Operation Mode
 `,R4,`NORM`,0,0,0,1,0,3547,4,20,4500,7413,567,1686,0,8388608,0,0,5,0,98,0,10084,4,80,100,0,0,4,:`
 
 Line: R4  
@@ -1214,8 +1372,8 @@ Read Bit: 2
 Data Type: String  
 Data: `NORM` represents normal mode, `ECON` economy mode, `AWAY` away mode and `WEEK` weekdays mode
 
-##### 6.5.2 Filtration
-###### Filtration Runtime
+#### 6.5.2. Filtration
+##### 6.5.2.1. Filtration Runtime
 `,R6,1,5,30,2,5,`8`,1,360,1,0,3584,5120,127,128,5632,5632,2304,1792,0,30,0,0,0,0,2,3,0,:`
 
 Line: R6  
@@ -1224,7 +1382,7 @@ Data Type: Integer
 Range: `1` to `24`  
 Data: Integer represents hours from `1` to `24`
 
-###### Time Between Filtration Cycles
+##### 6.5.2.2. Time Between Filtration Cycles
 `,R6,1,5,30,2,5,8,`1`,360,1,0,3584,5120,127,128,5632,5632,2304,1792,0,30,0,0,0,0,2,3,0,:`
 
 Line: R6  
@@ -1233,8 +1391,8 @@ Data Type: Integer
 Range: `1` to `24`  
 Data: Integer represents hours, where possible values are `1`, `2`, `3`, `4`, `6`, `8`, `12` and `24`
 
-##### 6.5.3 Sleep Timers
-###### Sleep Timer 1 State
+#### 6.5.3. Sleep Timers
+##### 6.5.3.1. Sleep Timer 1 State
 `,R6,1,5,30,2,5,8,1,360,1,0,3584,5120,`127`,128,5632,5632,2304,1792,0,30,0,0,0,0,2,3,0,:`
 
 Line: R6  
@@ -1243,7 +1401,7 @@ Data Type: Integer
 Range: `1` to `128`  
 Data: `128` represents off, `127` represents everyday mode, `96` represents weekends mode and `31` represents weekdays mode
 
-###### Sleep Timer 1 Start Time
+##### 6.5.3.2. Sleep Timer 1 Start Time
 `,R6,1,5,30,2,5,8,1,360,1,0,3584,5120,127,128,`5632`,5632,2304,1792,0,30,0,0,0,0,2,3,0,:`
 
 Line: R6  
@@ -1252,7 +1410,7 @@ Data Type: Integer
 Range: `0` to `5947`  
 Data: Time with the formula `h*256+m` (ie: for 20:00, integer will be 20\*256+0 = 5120; for 13:47, integer will be 13\*256+47 = 3375)
 
-###### Sleep Timer 1 Finish Time
+##### 6.5.3.3. Sleep Timer 1 Finish Time
 `,R6,1,5,30,2,5,8,1,360,1,0,3584,5120,127,128,5632,5632,`2304`,1792,0,30,0,0,0,0,2,3,0,:`
 
 Line: R6  
@@ -1261,7 +1419,7 @@ Data Type: Integer
 Range: `0` to `5947`  
 Data: Time with the formula `h*256+m` (ie: for 20:00, integer will be 20\*256+0 = 5120; for 13:47, integer will be 13\*256+47 = 3375)
 
-###### Sleep Timer 2 State
+##### 6.5.3.4. Sleep Timer 2 State
 `,R6,1,5,30,2,5,8,1,360,1,0,3584,5120,127,`128`,5632,5632,2304,1792,0,30,0,0,0,0,2,3,0,:`
 
 Line: R6  
@@ -1270,7 +1428,7 @@ Data Type: Integer
 Range: `1` to `128`  
 Data: `128` represents off, `127` represents everyday mode, `96` represents weekends mode and `31` represents weekdays mode.
 
-###### Sleep Timer 2 Start Time
+##### 6.5.3.5. Sleep Timer 2 Start Time
 `,R6,1,5,30,2,5,8,1,360,1,0,3584,5120,127,128,5632,`5632`,2304,1792,0,30,0,0,0,0,2,3,0,:`
 
 Line: R6  
@@ -1279,7 +1437,7 @@ Data Type: Integer
 Range: `0` to `5947`  
 Data: Time with the formula `h*256+m` (ie: for 20:00, integer will be 20\*256+0 = 5120; for 13:47, integer will be 13\*256+47 = 3375)
 
-###### Sleep Timer 2 Finish Time
+##### 6.5.3.6. Sleep Timer 2 Finish Time
 `,R6,1,5,30,2,5,8,1,360,1,0,3584,5120,127,128,5632,5632,2304,`1792`,0,30,0,0,0,0,2,3,0,:`
 
 Line: R6  
@@ -1288,8 +1446,8 @@ Data Type: Integer
 Range: `0` to `5947`  
 Data: Time with the formula `h*256+m` (ie: for 20:00, integer will be 20\*256+0 = 5120; for 13:47, integer will be 13\*256+47 = 3375)
 
-##### 6.5.4 Power Save
-###### Power Save
+#### 6.5.4. Power Save
+##### 6.5.4.1. Power Save
 `,R6,1,5,30,2,5,8,1,360,1,`0`,3584,5120,127,128,5632,5632,2304,1792,0,30,0,0,0,0,2,3,0,:`
 
 Line: R6  
@@ -1298,7 +1456,7 @@ Data Type: Integer
 Range: `0` to `2`  
 Data: Integer is `0` for off, `1` for low and `2` for high
 
-###### Peak Power Time Start
+##### 6.5.4.2. Peak Power Time Start
 `,R6,1,5,30,2,5,8,1,360,1,0,`3584`,5120,127,128,5632,5632,2304,1792,0,30,0,0,0,0,2,3,0,:`
 
 Line: R6  
@@ -1307,7 +1465,7 @@ Data Type: Integer
 Range: `0` to `5947`  
 Data: Time with the formula `h*256+m` (ie: for 20:00, integer will be 20\*256+0 = 5120; for 13:47, integer will be 13\*256+47 = 3375)
 
-###### Peak Power Time End
+##### 6.5.4.3. Peak Power Time End
 `,R6,1,5,30,2,5,8,1,360,1,0,3584,`5120`,127,128,5632,5632,2304,1792,0,30,0,0,0,0,2,3,0,:`
 
 Line: R6  
@@ -1316,7 +1474,7 @@ Data Type: Integer
 Range: `0` to `5947`  
 Data: Time with the formula `h*256+m` (ie: for 20:00, integer will be 20\*256+0 = 5120; for 13:47, integer will be 13\*256+47 = 3375)
 
-##### 6.5.5 Auto Sanitise
+#### 6.5.5. Auto Sanitise
 `,R7,`2304`,0,1,1,1,0,1,0,0,0,253,191,253,240,483,125,77,1,0,0,0,23,200,1,0,1,31,32,35,100,5,:`
 
 Line: R7  
@@ -1325,7 +1483,7 @@ Data Type: Integer
 Range: `0` to `5947`  
 Data: Time with the formula `h*256+m` (ie: for 20:00, integer will be 20\*256+0 = 5120; for 13:47, integer will be 13\*256+47 = 3375)
 
-##### 6.5.6 Time Out Mode
+#### 6.5.6. Time Out Mode
 `,R6,1,5,30,2,5,8,1,360,1,0,3584,5120,127,128,5632,5632,2304,1792,0,`30`,0,0,0,0,2,3,0,:`
 
 Line: R6  
@@ -1334,8 +1492,8 @@ Data Type: Integer
 Range: `10` to `30`  
 Data: Integer is time in minutes before pump and blower auto time-out
 
-##### 6.5.7 Heat Pump Mode
-###### Heat Pump Mode
+#### 6.5.7. Heat Pump Mode
+##### 6.5.7.1. Heat Pump Mode
 `,R7,2304,0,1,1,1,0,1,0,0,0,253,191,253,240,483,125,77,1,0,0,0,23,200,1,0,`1`,31,32,35,100,5,:`
 
 Line: R7  
@@ -1344,7 +1502,7 @@ Data Type: Integer
 Range: `0` to `3`  
 Data: `0` represents auto mode, `1` heat mode, `2` cool mode and `3` disabled mode
 
-###### SV Element Boost
+##### 6.5.7.2. SV Element Boost
 `,R7,2304,0,1,1,1,0,1,0,0,0,253,191,253,240,483,125,77,1,0,0,0,23,200,1,`0`,1,31,32,35,100,5,:`
 
 Line: R7  
@@ -1353,8 +1511,8 @@ Data Type: Integer
 Range: `0` to `1`  
 Data: Integer is `0` when off and `1` when on
 
-##### 6.5.8 Time/Date
-###### Time: Hour
+#### 6.5.8. Time/Date
+##### 6.5.8.1. Time: Hour
 `,R2,18,250,51,70,4,`13`,50,55,19,6,2020,376,9999,1,0,490,207,34,6000,602,23,20,0,0,0,0,44,35,45,:`
 
 Line: R2  
@@ -1363,7 +1521,7 @@ Data Type: Integer
 Range: `0` to `23`  
 Data: Represents hour of the day in 24-hour time
 
-###### Time: Minute
+##### 6.5.8.2. Time: Minute
 `,R2,18,250,51,70,4,13,`50`,55,19,6,2020,376,9999,1,0,490,207,34,6000,602,23,20,0,0,0,0,44,35,45,:`
 
 Line: R2  
@@ -1372,7 +1530,7 @@ Data Type: Integer
 Range: `0` to `59`  
 Data: Represents minute of the hour
 
-###### Date: Year
+##### 6.5.8.3. Date: Year
 `,R2,18,250,51,70,4,13,50,55,19,6,`2020`,376,9999,1,0,490,207,34,6000,602,23,20,0,0,0,0,44,35,45,:`
 
 Line: R2  
@@ -1381,7 +1539,7 @@ Data Type: Integer
 Range: `1970` to `2037` (correct 2021)  
 Data: Represents current year
 
-###### Date: Month
+##### 6.5.8.4. Date: Month
 `,R2,18,250,51,70,4,13,50,55,19,`6`,2020,376,9999,1,0,490,207,34,6000,602,23,20,0,0,0,0,44,35,45,:`
 
 Line: R2  
@@ -1390,7 +1548,7 @@ Data Type: Integer
 Range: `1` to `12`  
 Data: Represents current month of the year, where `1` is January and `12` is December
 
-###### Date: Day
+##### 6.5.8.5. Date: Day
 `,R2,18,250,51,70,4,13,50,55,`19`,6,2020,376,9999,1,0,490,207,34,6000,602,23,20,0,0,0,0,44,35,45,:`
 
 Line: R2  
@@ -1399,10 +1557,10 @@ Data Type: Integer
 Range: `1` to `31`  
 Data: Represents current day of the month, where the integer will only be a valid day of the current month
 
-##### 6.5.9 Support Mode
+#### 6.5.9. Support Mode
 If your application sets a support pin for the spa, it must locally store this pin. Support PIN's created by the official SpaLINK app are registered through a web request (see 4.5.9) but not shared across to other devices running the same app with the same spa logged in. That goes to say, PIN's are registered for the spa on the SpaNET server but individual to devices on which they were created/registered.
 
-##### 6.5.10 Lock Mode
+#### 6.5.10. Lock Mode
 `,RG,1,1,1,1,1,1,1-1-014,1-1-01,1-1-01,0-,0-,`0`,:*`
 
 Line: RG  
@@ -1411,34 +1569,34 @@ Data Type: Integer
 Range: `0` to `2`  
 Data: `0` represents keypad lock off, `1` partial keypad lock and `2` full keypad lock
 
-##### 6.5.11 Notification
+#### 6.5.11. Notification
 Notifications status for devices is sent to the SpaNET API server but is individual to devices, so your app must keep track if it has turned notifications on for itself. This setting should not be applicable for most plugins/code anyway, unless you are making an app which can send a type of notifications (e.g. push notifications).
 
-#### 6.6 Operating Environment
-##### 6.6.1 Power
-###### Supply Volts
+### 6.6. Operating Environment
+#### 6.6.1. Power
+##### 6.6.1.1. Supply Volts
 `,R2,18,`250`,51,70,4,13,50,55,19,6,2020,376,9999,1,0,490,207,34,6000,602,23,20,0,0,0,0,44,35,45,:`
 
 Line: R2  
 Read Bit: 3  
 Data Type: Integer, current power supply voltage (volts)
 
-###### Current Draw
+##### 6.6.1.2. Current Draw
 `,R2,`18`,250,51,70,4,13,50,55,19,6,2020,376,9999,1,0,490,207,34,6000,602,23,20,0,0,0,0,44,35,45,:`
 
 Line: R2  
 Read Bit: 2  
 Data Type: Integer, current power supply current draw (amps)
 
-###### Variable Heat Element Current Draw
+##### 6.6.1.3. Variable Heat Element Current Draw
 `,R3,32,1,4,4,4,SW V5 17 05 31,SV3,18480001,20000826,1,0,0,0,0,0,NA,7,0,470,Filtering,4,`0`,7,7,0,0,:`
 
 Line: R3  
 Read Bit: 23  
 Data Type: Integer, current variable heat element current draw x 10 (amps) eg 213 = 21.3 amps
 
-##### 6.6.1 Environment
-###### Case Temperature
+#### 6.6.2. Environment
+##### 6.6.2.1. Case Temperature
 `,R2,0,243,`43`,223,6,19,14,36,9,1,2022,320,9999,1,0,106,607,0,147,33207,791,819,0,721,0,0,1673,354,854,241,:`
 
 Line: R2
@@ -1446,20 +1604,20 @@ Read Bit: 4
 Data Type: Integer, current case temperature C
 
 
-#### 6.7 OEM Settings
-##### Current Limit
+### 6.7. OEM Settings
+#### 6.7.1. Current Limit
 `,R3,`32`,1,4,4,4,SW V5 17 05 31,SV3,18480001,20000826,1,0,0,0,0,0,NA,7,0,470,Filtering,4,0,7,7,0,0,:`
 
 Line: R3  
 Read Bit: 2  
 Data Type: Integer, current limit.
 
-##### Load Shed
+#### 6.7.2. Load Shed
 `,R3,32,1,4,4,4,SW V5 17 05 31,SV3,18480001,20000826,1,0,0,0,0,0,NA,`7`,0,470,Filtering,4,0,7,7,0,0,:`
 
 Line: R3  
 Read Bit: 18  
 Data Type: Integer, current limit.
 
-# 7. SpaNET API Requests List
+# SpaNET API Requests List
 COMING SOON - IN DEVELOPMENT
